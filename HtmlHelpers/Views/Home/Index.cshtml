@@ -1,0 +1,40 @@
+﻿@model Person
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div style="border: 1px solid gray; border-radius: 5px;" class="container">
+    <h2>Formulario</h2>
+    <hr />
+    <form asp-controller="Person" asp-action="Index" method="post">
+        @Html.LabelFor(x => x.Id) : @Html.TextBoxFor(x => x.Id)<br />
+        @Html.LabelFor(x => x.FirstName) : @Html.TextBoxFor(x => x.FirstName)<br />
+        @Html.LabelFor(x => x.LastName) : @Html.TextBoxFor(x => x.LastName)<br />
+        @Html.LabelFor(x => x.Age) : @Html.EditorFor(x => x.Age)<br />
+        @Html.LabelFor(x => x.Phone) : @Html.EditorFor(x => x.Phone)<br />
+        @Html.LabelFor(x => x.Email) : @Html.EditorFor(x => x.Email)<br />
+        @Html.DropDownList("Gender",
+                    new SelectList(Enum.GetValues(typeof(Gender))),
+                    "Select Gender")<br />
+        @Html.LabelFor(x => x.CivilStatus) :<br />
+        <label class="radio-inline">
+            @Html.RadioButtonFor(x => x.CivilStatus, "Casado") Casado
+        </label>
+        <label class="radio-inline">
+            @Html.RadioButtonFor(x => x.CivilStatus, "Soltero") Soltero
+        </label>
+        <label class="radio-inline">
+            @Html.RadioButtonFor(x => x.CivilStatus, "Unión libre") Unión libre
+        </label>
+        <hr />
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+@if (Model == null)
+{
+    <h1>sffffffffffffffffffffff</h1>
+}
+else
+{
+    @Html.DisplayFor(x=>Model.Id)
+}

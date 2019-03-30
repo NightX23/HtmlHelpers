@@ -1,0 +1,54 @@
+﻿@model Person
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div style="border: 1px solid gray; border-radius: 5px;" class="container">
+    <h2>Formulario</h2>
+    <hr />
+    <form asp-controller="Person" asp-action="Index" method="post">
+        <div asp-validation-summary="ModelOnly"></div>
+
+        @Html.LabelFor(x => x.Id) : @Html.TextBoxFor(x => x.Id)<br />
+        <span asp-validation-for="Id" class="text-danger"></span><br />
+
+        @Html.LabelFor(x => x.FirstName) : @Html.TextBoxFor(x => x.FirstName)<br />
+        <span asp-validation-for="FirstName"class="text-danger"></span><br />
+
+        @Html.LabelFor(x => x.LastName) : @Html.TextBoxFor(x => x.LastName)<br />
+        <span asp-validation-for="LastName"class="text-danger"></span><br />
+
+        @Html.LabelFor(x => x.Age) : @Html.EditorFor(x => x.Age)<br />
+        <span asp-validation-for="Age"class="text-danger"></span><br />
+        @Html.LabelFor(x => x.Phone) : @Html.EditorFor(x => x.Phone)<br />
+        @Html.LabelFor(x => x.Email) : @Html.EditorFor(x => x.Email)<br />
+        <span asp-validation-for="Email"class="text-danger"></span><br />
+        @Html.DropDownList("Gender",
+                    new SelectList(Enum.GetValues(typeof(Gender))))<br />
+        @Html.LabelFor(x => x.CivilStatus) :<br />
+        <label class="radio-inline">
+            @Html.RadioButtonFor(x => x.CivilStatus, "Casado") Casado
+        </label>
+        <label class="radio-inline">
+            @Html.RadioButtonFor(x => x.CivilStatus, "Soltero") Soltero
+        </label>
+        <label class="radio-inline">
+            @Html.RadioButtonFor(x => x.CivilStatus, "Unión libre") Unión libre
+        </label>
+        <hr />
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
+@if (Model != null)
+{
+<h2>
+    @Html.DisplayFor(x => Model.Id)<br />
+    @Html.DisplayFor(x => Model.FirstName)<br />
+    @Html.DisplayFor(x => Model.LastName)<br />
+    @Html.DisplayFor(x => Model.Age)<br />
+    @Html.DisplayFor(x => Model.Phone)<br />
+    @Html.DisplayFor(x => Model.Email)<br />
+    @Html.DisplayFor(x => Model.Gender)<br />
+    @Html.DisplayFor(x => Model.CivilStatus)
+</h2>
+}
